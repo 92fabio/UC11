@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validação com JavaScript</title>
+</head>
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+    }
+
+    div.box {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        width: 400px;
+        align-items: start;
+    }
+
+    button {
+        max-width: 100px;
+        margin: 0 auto;
+    }
+
+    input {
+        width: 200px;
+
+    }
+</style>
+
+<body>
+    <h1>Validação com JavaScript</h1>
+
+    <div class="box">
+        <label id="resultado"></label>
+        <div>
+        <div>
+            <label for="">Digite seu nome: </label>
+            <input type="text" id="txtNome" onclick="fnReset()">
+        </div>
+        <button onclick="fnValidarCampo()">Validar!</button>
+    </div>
+
+</body>
+
+<script>
+    function fnValidarCampo() {
+
+       
+        const campoResultado = document.getElementById('resultado')
+        const campoNome = document.getElementById('txtNome')
+        const nomeCompleto = document.getElementById('txtNome').value
+        // .trim() é um método que remove os espaços em branco do início e do final da string, garantindo que a validação seja feita apenas com o conteúdo real do nome, sem considerar espaços extras
+        // .legth é uma propriedade que retorna o número de caracteres em uma string, incluindo espaços, e é usada para verificar o comprimento do nome digitado pelo usuário
+        //const nomeCompleto é uma variável que armazena o valor do campo de texto com id 'txtNome' 
+        console.log('seu nome é:' + nomeCompleto)
+        // console.log exibe uma mensagem no console do navegador para fins de depuração
+
+        console.log(nomeCompleto.length)
+
+        if (nomeCompleto.length <= 4) {
+            return
+            // return é usado para sair da função imediatamente, ou seja, se o nome tiver 4 caracteres ou menos, a função será encerrada e o restante do código não será executado
+        }
+
+
+        if (nomeCompleto.length >= 150){
+            return alert("Máximo de 150 letras!!!")
+        }
+
+        const nomeSplit = nomeCompleto.split(" ")            // .split() é um método que divide uma string em um array de substrings com base em um separador especificado, neste caso, um espaço em branco (" "), permitindo verificar se o nome completo contém pelo menos duas partes (nome e sobrenome)
+        if (nomeSplit.length <=1){                          // exibe o nome na tela para preencher o nome completo
+            campoNome.style.borderColor = "red"
+            campoResultado.innerText = "Digite seu nome completo!!!"
+            campoResultado.style.color = "red"
+            return
+        }
+
+        alert("Você digitou seu nome correto: " + nomeCompleto)
+           campoResultado.innerText = ""
+           campoResultado.style.color = "black"
+        // alert exibe uma caixa de mensagem para o usuário
+    }
+
+    function fnReset(){
+            document.getElementById('txtNome').style.borderColor = "black"
+        }   
+
+</script>
+
+</html>
