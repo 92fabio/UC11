@@ -19,44 +19,45 @@ function fnValidacao() {
         return false;
     }
 
-      const tituloOriginal = document.getElementById("tituloOriginal").value.trim();
+    const tituloOriginal = document.getElementById("tituloOriginal").value.trim();
 
-      if (tituloOriginal.length == 0) {
+    if (tituloOriginal.length == 0) {
           alert("Título original é obrigatorio.");
           return false;
+     }
 
       if (tituloOriginal.length > 200){
         alert("Título original deve conter no máximo 200 caracteres ");
         return false;
-
-          const anoProducao = document.getElementById("anoProducao")
-
-    if(anoProducao.value.trim() <=1987)
-    {
-        alert("Ano anterior de 1987 nao é aceitavel")
-        anoProducao.value="";
-        anoProducao.focus();
-        return;
-
     }
 
-    if(anoProducao.value.trim() > 2026)
-    {
-        alert("Ano nao pode ser maior que 2031")
-        anoProducao.value="";
-        anoProducao.focus();
-        return;
+    const campoAnoProducao = document.getElementById('anoProducao');
+    const anoProducaoTexto = campoAnoProducao.value.trim();
 
+    const anoAtual = new Date().getFullYear();
+    const regexNumeros = /^\d+$/;
+
+    if (!regexNumeros.test(anoProducaoTexto)) {
+        alert("O campo ano de produção deve conter apenas números.");
+        return false;
     }
 
-     if(regexData.test(anoProducao.value.trim() || anoProducao.valeu.trim()==""))
-    {   alert("O Campo Ano de Producao precisar se preenchido  ")
-        anoProducao.value="";
-        anoProducao.focus();
-        return;
+    const anoProducao = parseInt(anoProducaoTexto, 10);
 
-       }
+    if (anoProducao <= 1888) {
+       alert("Este campo so é válido a partir de 1888.");
+       return false;
     }
-  }
+
+    if (anoProducao > anoAtual + 5) {
+       alert("O campo ano de produção não pode ser depois de 5 anos.");
+       return false;
 }
+
+}
+
+
+
+  
+
 
